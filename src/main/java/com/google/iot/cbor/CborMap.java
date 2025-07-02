@@ -417,7 +417,12 @@ public abstract class CborMap extends CborObject {
                 sb.append(JSONObject.quote(entry.getKey().toJsonString()));
             }
             sb.append(":");
-            sb.append(entry.getValue().toJsonString());
+            CborObject e = entry.getValue();
+            if (e != null) {
+                sb.append(e.toJsonString());
+            } else {
+                sb.append("null");
+            }
         }
         sb.append("}");
         return sb.toString();

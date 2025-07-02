@@ -194,4 +194,14 @@ public class CborMapTest extends CborTestBase {
                 CborConversionException.class,
                 () -> CborObject.createFromJavaObject(obj.toJavaObject(String[].class)));
     }
+
+    @Test
+    void testJsonNull() {
+        String output = "{\"Fun\":null}";
+
+        CborMap obj = CborMap.create();
+        //noinspection DataFlowIssue
+        obj.put("Fun", null);
+        assertEquals(output, obj.toJsonString());
+    }
 }
